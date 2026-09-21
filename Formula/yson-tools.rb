@@ -1,0 +1,68 @@
+# Template rendered by .github/workflows/release.yml into the homebrew tap as
+# Formula/yson-tools.rb. The version, the urls and the four platform checksums
+# are filled in at release time; nothing here needs editing by hand.
+class YsonTools < Formula
+  include Language::Python::Virtualenv
+
+  desc "CLI tools for working with the Yandex YSON format"
+  homepage "https://github.com/lesf0/yson-tools"
+  version "0.3.6"
+  license "Apache-2.0"
+
+  on_macos do
+    on_arm do
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-darwin-arm64.tar.gz"
+      sha256 "eae17a3325425cafb3d4520c99e892b4e01b44aa3b0e0b61f381d1bae107a7c2"
+    end
+
+    on_intel do
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-darwin-amd64.tar.gz"
+      sha256 "b902d35cfaa3f8a023596013db68d372e277d87f28da1c64b792d32d80506ef8"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-linux-arm64.tar.gz"
+      sha256 "124fca9ac38f54dcbc0065d48ca3868a6d269e51021e4ea65e61ea709e6aaf55"
+    end
+
+    on_intel do
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-linux-amd64.tar.gz"
+      sha256 "aafd895aaa60b2e1c77ce30b0024277b4ce05477c4560faa925516cc8516c9b1"
+    end
+  end
+
+  depends_on "jq"
+  # ysondiff shells out to jdiff, which is shipped by the jsondiff python package
+  depends_on "python@3.14"
+
+  resource "jsondiff" do
+    url "https://files.pythonhosted.org/packages/35/48/841137f1843fa215ea284834d1514b8e9e20962bda63a636c7417e02f8fb/jsondiff-2.2.1.tar.gz"
+    sha256 "658d162c8a86ba86de26303cd86a7b37e1b2c1ec98b569a60e2ca6180545f7fe"
+  end
+
+  # jsondiff/__init__.py imports yaml, so jdiff does not start without it
+  resource "pyyaml" do
+    url "https://files.pythonhosted.org/packages/05/8e/961c0007c59b8dd7729d542c61a4d537767a59645b82a0b521206e1e25c2/pyyaml-6.0.3.tar.gz"
+    sha256 "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
+  end
+
+  def install
+    bin.install "yson-convert", "ysonq", "yson-format", "ysondiff"
+
+    venv = virtualenv_create(libexec, "python3.14")
+    venv.pip_install resource("jsondiff"), resource("pyyaml")
+    bin.install_symlink libexec/"bin/jdiff"
+  end
+
+  test do
+    assert_equal '{"a":1}', pipe_output("#{bin}/yson-convert -m y2j -f compact", "{a=1}").strip
+    assert_equal "{a=1;}", pipe_output("#{bin}/ysonq -c .", "{a=1}").strip
+
+    (testpath/"a.yson").write("{foo=baz}")
+    (testpath/"b.yson").write("{foo=bar}")
+    assert_equal "{foo=[baz;bar;];}",
+                 pipe_output("#{bin}/ysondiff #{testpath}/a.yson #{testpath}/b.yson -s symmetric").strip
+  end
+end
