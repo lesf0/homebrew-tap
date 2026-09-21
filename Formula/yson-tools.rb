@@ -6,30 +6,30 @@ class YsonTools < Formula
 
   desc "CLI tools for working with the Yandex YSON format"
   homepage "https://github.com/lesf0/yson-tools"
-  version "0.3.6"
+  version "0.3.7"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-darwin-arm64.tar.gz"
-      sha256 "eae17a3325425cafb3d4520c99e892b4e01b44aa3b0e0b61f381d1bae107a7c2"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-darwin-arm64.tar.gz"
+      sha256 "0fc8b5c494da3f3b8e30eb56e2994ff1076996b59192345a3335a7c0dc6d8f53"
     end
 
     on_intel do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-darwin-amd64.tar.gz"
-      sha256 "b902d35cfaa3f8a023596013db68d372e277d87f28da1c64b792d32d80506ef8"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-darwin-amd64.tar.gz"
+      sha256 "e2951a39093132a4108bd623e5ec96cf64c06f345651513979ad5804837e5b36"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-linux-arm64.tar.gz"
-      sha256 "124fca9ac38f54dcbc0065d48ca3868a6d269e51021e4ea65e61ea709e6aaf55"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-linux-arm64.tar.gz"
+      sha256 "12a1bad0ebc7be496d35bb2f4acd34023cc026c7f183608a4c3b65705d1ae3a1"
     end
 
     on_intel do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.6/yson-tools-0.3.6-linux-amd64.tar.gz"
-      sha256 "aafd895aaa60b2e1c77ce30b0024277b4ce05477c4560faa925516cc8516c9b1"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-linux-amd64.tar.gz"
+      sha256 "1a33d4a748cced9d18fd17d1b379d54eed654b534f28db73120447d165bb894a"
     end
   end
 
