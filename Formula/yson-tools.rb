@@ -6,34 +6,33 @@ class YsonTools < Formula
 
   desc "CLI tools for working with the Yandex YSON format"
   homepage "https://github.com/lesf0/yson-tools"
-  version "0.3.7"
+  version "0.4.0"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-darwin-arm64.tar.gz"
-      sha256 "0fc8b5c494da3f3b8e30eb56e2994ff1076996b59192345a3335a7c0dc6d8f53"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.4.0/yson-tools-0.4.0-darwin-arm64.tar.gz"
+      sha256 "932dca604f858dbb584bcfb0f4f07add6d4829ff87a5d45899139845b5edcb89"
     end
 
     on_intel do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-darwin-amd64.tar.gz"
-      sha256 "e2951a39093132a4108bd623e5ec96cf64c06f345651513979ad5804837e5b36"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.4.0/yson-tools-0.4.0-darwin-amd64.tar.gz"
+      sha256 "e0fd6b9833e76acbf67205daa17f29cb3fb28da448bca3b008269ee2295c4193"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-linux-arm64.tar.gz"
-      sha256 "12a1bad0ebc7be496d35bb2f4acd34023cc026c7f183608a4c3b65705d1ae3a1"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.4.0/yson-tools-0.4.0-linux-arm64.tar.gz"
+      sha256 "1a87d7938b2ab8f611a0c0473a063deac0478670e3e1dd2cba3d16ed0c1a3a9d"
     end
 
     on_intel do
-      url "https://github.com/lesf0/yson-tools/releases/download/v0.3.7/yson-tools-0.3.7-linux-amd64.tar.gz"
-      sha256 "1a33d4a748cced9d18fd17d1b379d54eed654b534f28db73120447d165bb894a"
+      url "https://github.com/lesf0/yson-tools/releases/download/v0.4.0/yson-tools-0.4.0-linux-amd64.tar.gz"
+      sha256 "7af521e487735aac9ca85f2ba8b09c766d1b8cf6cbe3dacd24af83b91e77b913"
     end
   end
 
-  depends_on "jq"
   # ysondiff shells out to jdiff, which is shipped by the jsondiff python package
   depends_on "python@3.14"
 
